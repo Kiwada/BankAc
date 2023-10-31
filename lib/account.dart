@@ -1,4 +1,5 @@
 import 'transaction.dart';
+import 'dart:io';
 
 abstract class Account {
   final int agency;
@@ -13,9 +14,18 @@ abstract class Account {
     required this.clientName,
   });
 
-  void transaction(TransactionType type, double value,
+  double balance() {
+    double sum = 0.0;
+
+    for (var trans in transactions) {
+      sum += trans.value;
+    }
+    return sum;
+  }
+
+  void addTransaction(TransactionType type, double value,
       [DateTime? date, String? description]) {
-    transaction.add(Transaction)(
+    Transaction.add(Transaction)(
         type: type,
         value: value,
         date: date ?? DateTime.now(),
@@ -25,3 +35,4 @@ abstract class Account {
   void deposit(double value);
   void withdrawal(double value);
 }
+
