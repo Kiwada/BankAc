@@ -1,11 +1,27 @@
-class Transaction {
-  final TransactionType;
-  final double value;
-  final String? Description
+import 'package:bank/account.dart';
 
-  class Transaction({
+enum TransactionType{
+  withdrawal,
+  deposit,
+  payment,
+  revenue,
+  interest,
+  debitTransfer,
+  creditTransfer
+}
+
+class Transaction {
+  final  TransactionType type;
+  final DateTime date;
+  final double value;
+  final String? description;
+
+  Transaction({
+    required this.type,
     required this.date,
     required this.value,
-    this.TransactionTYpe
-  })
+    this.description
+     })
+
+  
 }
